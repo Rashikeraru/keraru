@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Face Recognition</title>
+    <!-- Import face-api.js -->
+    <script src="https://unpkg.com/@tensorflow/tfjs"></script>
+    <script src="https://unpkg.com/face-api.js"></script>
+    <style>
+        /* Your CSS styles here */
+    </style>
+</head>
+<body>
+    <h1>Face Recognition</h1>
+    <video id="video" width="640" height="480" autoplay></video>
+    <button id="captureButton">Capture</button>
+    <div id="message"></div>
+
+    <script>
+        // Load models from face-api.js
+        Promise.all([
+            faceapi.nets.tinyFaceDetector.loadFromUri('models'),
+            faceapi.nets.faceLandmark68Net.loadFromUri('models'),
+            faceapi.nets.faceRecognitionNet.loadFromUri('models')
+        ]).then(startVideo);
+
+        async function startVideo() {
+            const video = document.getElementById('video');
+            const stream = await navigator.mediaDevices.getUserMedia({ video: {} });
+            video.srcObject = stream;
+        }
+
+        const captureButton = document.getElementById('captureButton');
+        const messageDiv = document.getElementById('message');
+
+        // Capture image from video stream and perform face recognition
+        captureButton.addEventListener('click', async () => {
+            const video = document.getElementById('video');
+            const canvas = faceapi.createCanvasFromMedia(video);
+            document.body.append(canvas);
+            const displaySize = { width: video.width, height: video.height };
+            faceapi.matchDimensions(canvas, displaySize);
+
+            const detections = await faceapi.detectAllFaces(video).withFaceLandmarks().withFaceDescriptors();
+            if (detections.length > 0) {
+                // If face is detected, display a message
+                messageDiv.textContent = "Student is valid.";
+                window.location.href = 'index.html';
+
+                // You can redirect the user to another page here
+            } else {
+                // If no face is detected, display an error message
+                messageDiv.textContent = "Student is invalid.";
+            }
+        });
+    </script>
+</body>
+</html>

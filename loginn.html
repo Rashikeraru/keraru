@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url('college.jpg'); /* Background image */
+            background-size: cover; /* Cover the entire viewport */
+        }
+
+        .login-container {
+            background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white background */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+        }
+
+        h1, h2 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #333;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        input {
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 10px;
+            background-color: #5cb85c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #4cae4c;
+        }
+
+        #message {
+            margin-top: 20px;
+        }
+
+        /* Styling for background blur text */
+        .background-text {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 60px;
+            color: red;
+            font-weight: bold;
+            z-index: -1;
+            opacity: 0.1;
+        }
+    </style>
+</head>
+<body>
+    <div class="background-text">KERARU</div>
+    <div class="login-container">
+        <h1>Student Login 👦🏻 </h1>
+        <form id="loginForm">
+            <label for="email">Email: 📧 </label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="password">Password: 🔑</label>
+            <input type="password" id="password" name="password" required>
+
+            <button type="submit">Login</button>
+        </form>
+        <div id="message"></div>
+    </div>
+
+    <script>
+        // Hardcoded CSV data as a JSON array
+        const csvData = [
+            { "email": "radhika@123.com", "password": "123" },
+            { "email": "keerthana@222.com", "password": "222" },
+            { "email": "ruhan@333.com", "password": "333" },
+            {"email": "shabareesh@333.com", "password": "331"},
+            {"email": "bharghav@333.com", "password": "332"},
+            {"email": "tarun@333.com", "password": "3322"},
+            {"email": "pavithra@333.com", "password": "334"},
+            {"email": "srilekha@333.com", "password": "335"},
+            {"email": "rashi@333.com", "password": "336"    }
+        ];
+
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            let loginSuccessful = false;
+
+            csvData.forEach(row => {
+                if (row.email === email && row.password === password) {
+                    loginSuccessful = true;
+                }
+            });
+
+            const messageElement = document.getElementById('message');
+            if (loginSuccessful) {
+                messageElement.style.color = 'green';
+                messageElement.innerText = 'Login successful!';
+                window.location.href = 'timetable.html';
+            } else {
+                messageElement.style.color = 'red';
+                messageElement.innerText = 'Login failed. Please check your credentials.';
+            }
+        });
+    </script>
+</body>
+</html>

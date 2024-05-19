@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+    <link rel="shortcut icon" href="./images/logo.png">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="logo" title="University Management System">
+            <img src="./images/logo.png" alt="">
+            <h2><span class="keraru">K</span>ERA<span class="danger">R</span>U </h2>
+        </div>
+        <div class="navbar">
+            <a href="index.html" class="active">
+                <span class="material-icons-sharp">home</span>
+                <h3>Home</h3>
+            </a>
+            <a href="timetable.html" onclick="timeTableAll()">
+                <span class="material-icons-sharp">done_all</span>
+                <h3>Attendance</h3>
+            </a> 
+            <a href="exam.html">
+                <span class="material-icons-sharp">grid_view</span>
+                <h3>Speech to Text</h3>
+            </a>
+            <a href="password.html">
+                <span class="material-icons-sharp">assignment_turned_in</span>
+                <h3>Quiz</h3>
+            </a>
+            <a href="loginn.html">
+                <span class="material-icons-sharp" onclick="">logout</span>
+                <h3>Logout</h3>
+            </a>
+        </div>
+        <div id="profile-btn">
+            <span class="material-icons-sharp">person</span>
+        </div>
+        <div class="theme-toggler">
+            <span class="material-icons-sharp active">light_mode</span>
+            <span class="material-icons-sharp">dark_mode</span>
+        </div>
+    </header>
+    <div class="container">
+        <aside>
+            <div class="profile">
+                <div class="top">
+                    <div class="profile-photo">
+                        <img src="./images/profile-5.jpg" alt="">
+                    </div>
+                    <div class="info">
+                        <p>Hey, <b>RUHAN</b> </p>
+                        </div>
+                </div>
+                <div class="about">
+                    <h5>Course</h5>
+                    <p>BTech. Computer Science & Engineering</p>
+                    <h5>DOB</h5>
+                    <p>29-Feb-2002</p>
+                    <h5>Contact</h5>
+                    <p>+91 9019540558</p>
+                    <h5>Email</h5>
+                    <p>ruhanshaik59@gmail.com</p>
+                    <h5>Address</h5>
+                    <p>Allipur,Ballari, Karnataka India</p>
+                </div>
+            </div>
+        </aside>
+
+       <main>
+    <h1>Subjects</h1>
+    <div class="subjects">
+        <div class="eg">
+            <span class="material-icons-sharp">architecture</span>
+            <h3>Engineering Mathematics</h3>
+            <a href="https://youtu.be/qM4R1SmH7fc?si=ElW24FYluIA2Q905" target="_blank">
+                <span class="material-icons-sharp play-icon">play_circle_filled</span>
+                <h4>Watch Video</h4>
+            </a>
+        </div>
+        <div class="mth">
+            <span class="material-icons-sharp">functions</span>
+            <h3>Mathematical Engineering</h3>
+            <a href="https://youtu.be/qM4R1SmH7fc?si=ElW24FYluIA2Q905" target="_blank">
+                <span class="material-icons-sharp play-icon">play_circle_filled</span>
+                <h4>Watch Video</h4>
+            </a>
+        </div>
+        <div class="cs">
+            <span class="material-icons-sharp">computer</span>
+            <h3>Computer Architecture</h3>
+            <a href="https://youtu.be/GRInNLx3Tug?si=ErhtEeARDcIuX_qq" target="_blank">
+                <span class="material-icons-sharp play-icon">play_circle_filled</span>
+                <h4>Watch Video</h4>
+            </a>
+        </div>
+        <div class="cg">
+            <span class="material-icons-sharp">dns</span>
+            <h3>Database Management</h3>
+            <a href="https://youtu.be/NQ1cvwEvh44?si=waoC_iPZ784EDPI4" target="_blank">
+                <span class="material-icons-sharp play-icon">play_circle_filled</span>
+                <h4>Watch Video</h4>
+            </a>
+        </div>
+        <div class="net">
+            <span class="material-icons-sharp">router</span>
+            <h3>Network Security</h3>
+            <a href="https://www.youtube.com/watch?v=YOUR_VIDEO_ID_HERE" target="_blank">
+                <span class="material-icons-sharp play-icon">play_circle_filled</span>
+                <h4>Watch Video</h4>
+            </a>
+        </div>
+    </div>
+</main>
+
+        <div class="right">
+            <div class="announcements">
+                <h2>Announcements</h2>
+                <div class="updates">
+                    <div class="message">
+                        <p> <b>Academic</b> Summer training internship with Live Projects.</p>
+                        
+                    </div>
+                    <div class="message">
+                        <p> <b>Co-curricular</b> Global internship oportunity by Student organization.</p>
+                        <small class="text-muted">10 Minutes Ago</small>
+                    </div>
+                    <div class="message">
+                        <p> <b>Examination</b> Instructions for Mid Term Examination.</p>
+                       
+                    </div>
+                </div>
+            </div>
+
+            <div class="leaves">
+                <h2>Members</h2>
+                <div class="teacher">
+                    <div class="profile-photo"><img src="./images/profile-2.jpeg" alt=""></div>
+                    <div class="info">
+                        <h3>Radhika</h3>
+                        <small class="text-muted">Computer Science</small>
+                    </div>
+                </div>
+                <div class="teacher">
+                    <div class="profile-photo"><img src="./images/profile-3.jpg" alt=""></div>
+                    <div class="info">
+                        <h3>Rashi</h3>
+                        <small class="text-muted">Artificial Intelligence</small>
+                    </div>
+                </div>
+                <div class="teacher">
+                    <div class="profile-photo"><img src="./images/profile-4.jpg" alt=""></div>
+                    <div class="info">
+                        <h3>Keerthana</h3>
+                        <small class="text-muted">Electronics & Communication</small>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <script src="timeTable.js"></script>
+    <script src="app.js"></script>
+     <script>
+window.embeddedChatbotConfig = {
+chatbotId: "EddazaZSNWhyPsE_Wa6l1",
+domain: "www.chatbase.co"
+}
+</script>
+<script>
+src="https://www.chatbase.co/embed.min.js"
+chatbotId="EddazaZSNWhyPsE_Wa6l1"
+domain="www.chatbase.co"
+defer>
+</script>
+<script>
+        // Display attendance message if available
+        document.addEventListener('DOMContentLoaded', () => {
+            const attendanceMessage = localStorage.getItem('attendanceMessage');
+            if (attendanceMessage) {
+                document.getElementById('attendanceMessage').innerText = attendanceMessage;
+                // Remove the message from localStorage to avoid displaying it on subsequent visits
+                localStorage.removeItem('attendanceMessage');
+            }
+        });
+    </script>
+</script>
+</body>
+</html>

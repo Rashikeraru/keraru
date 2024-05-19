@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Face Recognition</title>
+    <style>
+        #output img {
+            width: 320px;
+            height: 240px;
+        }
+        #loadingMessage {
+            display: none;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+    <video id="video" width="640" height="480" autoplay></video>
+    <button id="captureBtn">Capture</button>
+    <div id="output">
+        <div id="capturedImage"></div>
+        <div id="loadingMessage">Face recognition in progress... <span id="loadingSpinner">⏳</span></div>
+    </div>
+
+    <script>
+        // Function to capture an image from the video stream
+        function captureImage() {
+            const videoElement = document.getElementById('video');
+            const canvas = document.createElement('canvas');
+            canvas.width = videoElement.videoWidth;
+            canvas.height = videoElement.videoHeight;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(videoElement, 0, 0, canvas.width, canvas.height);
+            return canvas.toDataURL('image/jpeg');
+        }
+
+        // Function to handle face recognition process
+        function recognizeFace(imageDataURL) {
+            document.getElementById('loadingMessage').style.display = 'block';
+            // Simulate face recognition process with a delay
+            setTimeout(() => {
+                localStorage.setItem('attendanceMessage', 'The student is present today.');
+                window.location.href = 'index.html';
+            }, 5000); // Redirect after 5 seconds
+        }
+
+        // Get access to the user's camera
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then(function (stream) {
+                const videoElement = document.getElementById('video');
+                videoElement.srcObject = stream;
+            })
+            .catch(function (error) {
+                console.error('Error accessing webcam:', error);
+            });
+
+        // Capture button click event handler
+        document.getElementById('captureBtn').addEventListener('click', function () {
+            const imageDataURL = captureImage();
+            document.getElementById('capturedImage').innerHTML = `<img src="${imageDataURL}" alt="Captured Image">`;
+
+            // Perform face recognition
+            recognizeFace(imageDataURL);
+        });
+    </script>
+</body>
+</html>

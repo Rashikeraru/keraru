@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speech to Text</title>
+    <style>body {
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    max-width: 600px;
+    margin: 50px auto;
+    text-align: center;
+}
+
+h1 {
+    color: #333;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+#dialog-box {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    min-height: 50px;
+    text-align: left;
+    overflow-y: auto;
+}
+</style>
+</head>
+<body>
+    <div class="container">
+        <h1>Speech Recognition</h1>
+        <button id="start-recognition">Start Speech Recognition</button>
+        <div id="dialog-box"></div>
+    </div>
+    <script>// Create a SpeechRecognition object
+const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition || window.mozSpeechRecognition || window.msSpeechRecognition)();
+
+// Set recognition properties
+recognition.lang = 'en-US'; // Set language
+recognition.interimResults = false; // Whether to return interim results
+
+// Get reference to the dialog box element
+const dialogBox = document.getElementById('dialog-box');
+
+// Function to start speech recognition
+function startRecognition() {
+    recognition.start();
+    console.log('Speech recognition started');
+}
+
+// Event listener for the start button
+document.getElementById('start-recognition').addEventListener('click', startRecognition);
+
+// Event listener for when speech is recognized
+recognition.onresult = function(event) {
+    const last = event.results.length - 1;
+    const text = event.results[last][0].transcript;
+    console.log('Recognized text: ', text);
+    
+    // Display the recognized text in the dialog box
+    displayTextInDialog(text);
+};
+
+// Function to display recognized text in the dialog box
+function displayTextInDialog(text) {
+    // Create a paragraph element to display the recognized text
+    const paragraph = document.createElement('p');
+    paragraph.textContent = text;
+    
+    // Append the paragraph to the dialog box
+    dialogBox.appendChild(paragraph);
+}
+
+// Event listener for when speech recognition ends
+recognition.onend = function() {
+    console.log('Speech recognition ended');
+};
+
+// Stop recognition if there's an error
+recognition.onerror = function(event) {
+    console.error('Speech recognition error:', event.error);
+    recognition.stop();
+};
+</script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Login</title>
+    <link rel="stylesheet" href="studentloginstyle.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="logo.png" alt="Logo">
+            <span>KERARU</span>
+        </div>
+    </header>
+    <main>
+        <div class="container">
+            <div id="loginForm">
+                <h2>Login</h2>
+                <form id="loginFormElement">
+                    <label for="username">Username/Email:</label>
+                    <input type="text" id="username" name="username" required><br><br>
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required><br><br>
+                    <input type="submit" value="Login">
+                </form>
+                <p id="error-message" style="color:red;"></p>
+                <p>Don't have an account? <a href="register.html">Register here</a></p>
+            </div>
+        </div>
+    </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+    <script> 
+        document.getElementById('loginFormElement').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form from submitting
+
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value.trim();
+
+            // Read and parse the CSV file
+            fetch('1.csv')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Error reading CSV file');
+                    }
+                    return response.text();
+                })
+                .then(data => {
+                    const lines = data.split('\n'); // Split the CSV data into lines
+                    let foundUser = false;
+
+                    for (let line of lines) {
+                        const user = Papa.parse(line, { header: true }).data[0]; // Parse each line as a single user
+                        console.log(user); // Debug: log parsed user data
+
+                        if (user.username === username && user.password === password) {
+                            foundUser = true;
+                            console.log('User found:', user);
+                            // Redirect to the desired URL after finding the user
+                            window.location.href = 'dashboard.html'; // Replace 'dashboard.html' with the URL you want to redirect to
+                            break; // Stop searching once the user is found
+                        }
+                    }
+
+                    if (!foundUser) {
+                        console.log('User not found');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        });
+    </script>
+</body>
+</html>
